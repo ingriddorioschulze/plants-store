@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useCheckout } from '../hooks'
 import AddressForm from '../AddressForm'
-import EmailForm from '../EmailForm'
-import { useAddress } from "../hooks"
 import PaymentForm from '../PaymentForm'
+import OrderCompletion from '../OrderCompletion'
+import { executeOrder } from '../api'
 
 //#region styles
 //#endregion
@@ -10,25 +11,43 @@ import PaymentForm from '../PaymentForm'
 /**
  * This component holds other components that handles the users payment, address and delivery informations.
  */
+function Checkout(history) {
+  const checkout = useCheckout({})
+  const [state, setState] = useState("showForm")
+  const [orderConfirmation, setOrderConfirmation] = useState()
 
-function Checkout() {
-  const deliveryAddress = useAddress()
-  const billingAddress = useAddress()
-  console.log("delivery address", deliveryAddress.data)
 
-  return (
-    <div>
-      <div>Checkout</div>
+  async function handleBuyClick() {
+    setOrderConfirmation(await executeOrder(checkout))
+    setState("showConfirmation")
+  }
+
+  if (state === "showForm") {
+    return (
+      <div>
+        <div>Checkout</div>
         <div>1. Your Email</div>
-       <EmailForm/>
+        <input
+          type="text"
+          placeholder="your email"
+          value={checkout.email}
+          onChange={(e) => checkout.setEmail(e.target.value)}
+        />
         <div>2. Shipping Address</div>
-        <AddressForm address={deliveryAddress} />
+        <AddressForm address={checkout.deliveryAddress} />
         <div>3. Billing Address</div>
-        <AddressForm address={billingAddress} />
+        <AddressForm address={checkout.billingAddress} />
         <div>4. Payment</div>
-        <PaymentForm/>
-    </div>
-  )
+        <PaymentForm payment={checkout.payment} />
+        <OrderCompletion orderCompletion={checkout.orderCompletion} />
+        <button onClick={handleBuyClick}>Buy</button>
+      </div>
+    )
+  } else if (state === "showConfirmation") {
+    return (
+    <pre>{JSON.stringify(orderConfirmation, null, 2)}</pre>
+    )
+  }
 }
 
 export default Checkout

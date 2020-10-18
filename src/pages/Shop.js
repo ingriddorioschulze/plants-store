@@ -71,10 +71,9 @@ const ProductCard = styled.div`
 /**
  * This component render a list of products and allows adding them to the cart.
  */
-
 function Shop({ history }) {
   const [productsData, setProductsData] = useState(data.products)
-
+  
   function handleCartClick() {
     const text = "Item added to the cart"
     alert(text)

@@ -6,9 +6,7 @@ import React from 'react'
 /**
  * This component handles the users address informations.
  */
-
 function AddressForm({ address }) {
-
   function handleSubmitClick(e) {
     e.preventDefault()
   }

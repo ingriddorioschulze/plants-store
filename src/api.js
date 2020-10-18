@@ -2,7 +2,6 @@
 /**
  * This file contains a backend mock used to simulate the requests and responses.
  */
-
 export const data = {
     type: "shoppingcart",
     shoppingcartid: "a4cde56a-2e71-42ab-a458-b52dc81b0fdd",
@@ -27,4 +26,27 @@ export const data = {
     vadSum: "49,19",
     deliveryCosts: "4.99",
     totalSum: "266.16"
+}
+
+/**
+ * 
+ * This function send order data to the backend
+ * @returns A promise containing the order comfirmation data
+ */
+export function executeOrder(checkout) {
+
+  console.log("executing order", checkout)
+  const deliveryAddress = checkout.deliveryAddress.data
+  
+  return new Promise(resolve => setTimeout(() => {
+    resolve({
+      orderID:"40dc9802-c8d9-4da7-a9cb-711e0a192c8d",
+      orderNumber:"NX-123478",
+      customerName:`${deliveryAddress.firstName} ${deliveryAddress.lastName}`,
+      customerMail: checkout.email,
+      deliveryAddress: `${deliveryAddress.firstName} ${deliveryAddress.lastName}\n${deliveryAddress.streetAndNumber}\n${deliveryAddress.postalCode}\n${deliveryAddress.city}`,
+      newsletterAbo: checkout.orderCompletion.newsletter,
+    })
+  }), 500)
+
 }

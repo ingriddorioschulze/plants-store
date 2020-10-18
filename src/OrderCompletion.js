@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 //#region styles
 //#endregion
@@ -6,25 +6,20 @@ import React, { useState } from 'react'
 /**
  * This component is responsible for the users emails, newsletter and AGB.
  */
-
-function EmailForm() {
-
-    const [newsletter, setNewsletter] = useState(true)
-    const [termsAndConditions, setTermsAndConditions] = useState(true)
-
-    function handleNewsletter() {
-      setNewsletter(false)
-    }
-    function handleTermsAndConditions() {
-      setTermsAndConditions(false)
-    }
+function OrderCompletion({ orderCompletion }) {
+  function handleNewsletter(e) {
+    orderCompletion.setNewsletter(e.target.checked)
+  }
+  
+  function handleTermsAndConditions(e) {
+    orderCompletion.setTermsAndConditions(e.target.checked)
+  }
 
   return (
     <div>
-      <input type="text" placeholder="your email" />
       <input
         type="checkbox"
-        defaultChecked={newsletter}
+        defaultChecked={orderCompletion.newsletter}
         name="newsletter"
         onChange={handleNewsletter}
       />
@@ -33,7 +28,7 @@ function EmailForm() {
       </label>
       <input
         type="checkbox"
-        defaultChecked={termsAndConditions}
+        defaultChecked={orderCompletion.termsAndConditions}
         name="termsAndConditions"
         onChange={handleTermsAndConditions}
       />
@@ -45,4 +40,4 @@ function EmailForm() {
   )
 }
 
-export default EmailForm
+export default OrderCompletion
