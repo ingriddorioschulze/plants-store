@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { data } from "./api"
+import { data } from "../api"
 
 //#region styles
-
 const ShopWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,9 +67,11 @@ const ProductCard = styled.div`
 }
 `
 //#endregion
+
 /**
  * This component render a list of products and allows adding them to the cart.
  */
+
 function Shop({ history }) {
   const [productsData, setProductsData] = useState(data.products)
 

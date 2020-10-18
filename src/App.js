@@ -1,10 +1,10 @@
 import React from 'react';
 import {   BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import Shop from './Shop';
-// import Checkout from './Checkout';
+import Shop from './pages/Shop';
+import Checkout from './pages/Checkout';
 
-
+//#region styles
 const AppWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -18,6 +18,7 @@ const AppWrapper = styled.div`
   padding: 20px;
 }
 `
+//#endregion
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
        <Router>
        <Switch>
          <Route exact path="/" component={Shop}/>
-         {/* <Route exact path="/checkout" component={Checkout} /> */}
+         <Route exact path="/checkout" component={Checkout} />
        </Switch>
        </Router>
     </AppWrapper>

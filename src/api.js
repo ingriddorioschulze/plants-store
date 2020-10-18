@@ -1,3 +1,8 @@
+
+/**
+ * This file contains a backend mock used to simulate the requests and responses.
+ */
+
 export const data = {
     type: "shoppingcart",
     shoppingcartid: "a4cde56a-2e71-42ab-a458-b52dc81b0fdd",
