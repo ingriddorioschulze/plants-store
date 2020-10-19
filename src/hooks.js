@@ -8,12 +8,10 @@ export function useAddress(initialData) {
     initialData || {
       firstName: '',
       lastName: '',
-      address: '',
       streetAndNumber: '',
       country: '',
       postalCode: '',
       city: '',
-      phoneNumber: '',
       emails: "",
       newsletter: "",
       termsAndConditions: "",
@@ -31,12 +29,6 @@ export function useAddress(initialData) {
       setData({
         ...data,
         lastName,
-      })
-    },
-    setAddress(address) {
-      setData({
-        ...data,
-        address,
       })
     },
     setStreetAndNumber(streetAndNumber) {
@@ -61,12 +53,6 @@ export function useAddress(initialData) {
       setData({
         ...data,
         city,
-      })
-    },
-    setPhoneNumber(phoneNumber) {
-      setData({
-        ...data,
-        phoneNumber,
       })
     },
     setEmail(email) {
@@ -94,6 +80,7 @@ export function useAddress(initialData) {
 export function usePayment(initialData) {
     const [data, setData] = useState(
     initialData || {
+      paymentType: "",
       accountHolder: "",
       iban: "",
       bic: "",
@@ -105,10 +92,16 @@ export function usePayment(initialData) {
   )
     return {
       data,
-    setAccountHolder(AccountHolder) {
+      setPaymentType(paymentType) {
         setData({
           ...data,
-          AccountHolder,
+          paymentType,
+        })
+      },
+      setAccountHolder(accountHolder) {
+        setData({
+          ...data,
+          accountHolder,
         })
       },
       setIban(iban) {
@@ -139,9 +132,9 @@ export function usePayment(initialData) {
         setData({
           ...data,
           cardDate,
-      })
-    },
-  }
+        })
+      },
+    }
 }
 
 export function useCheckout(initialData) {
@@ -149,14 +142,18 @@ export function useCheckout(initialData) {
   const billingAddress = useAddress(initialData.billingAddress)
   const payment = usePayment(initialData.payment)
   const [email, setEmail] = useState(initialData.email || "" )
+  const [phoneNumber, setPhoneNumber] = useState(initialData.phoneNumber || '')
   const [newsletter, setNewsletter] = useState(false)
   const [termsAndConditions, setTermsAndConditions] = useState(false)
+  const enableBuy = termsAndConditions
 
   return {
     deliveryAddress,
     billingAddress,
     payment,
     email, setEmail,
+    phoneNumber, setPhoneNumber,
+    enableBuy,
     orderCompletion: {
       newsletter, setNewsletter,
       termsAndConditions, setTermsAndConditions

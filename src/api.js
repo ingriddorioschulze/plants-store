@@ -35,7 +35,6 @@ export const data = {
  */
 export function executeOrder(checkout) {
 
-  console.log("executing order", checkout)
   const deliveryAddress = checkout.deliveryAddress.data
   
   return new Promise(resolve => setTimeout(() => {
