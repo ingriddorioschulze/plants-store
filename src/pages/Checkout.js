@@ -84,7 +84,10 @@ function Checkout() {
           <AddressForm address={checkout.billingAddress} />
           <div className="title">PAYMENT</div>
           <PaymentForm payment={checkout.payment} />
-          <OrderCompletion orderCompletion={checkout.orderCompletion} />
+          <OrderCompletion
+            orderCompletion={checkout.orderCompletion}
+            enableBuy={checkout.enableBuy}
+          />
         </form>
       </ShippingAndPaymentWrapper>
     )

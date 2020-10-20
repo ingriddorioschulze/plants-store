@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 //#region styles
-
 const OrderCompletionWrapper = styled.div`
   margin: 10px;
 
@@ -33,14 +31,14 @@ const OrderCompletionWrapper = styled.div`
 //#endregion
 
 /**
- * This component is responsible for the users emails, newsletter and AGB.
+ * This component is responsible for the clicking in newsletter, accepting AGB and clicking the button to send the order to the BE.
  */
 function OrderCompletion({ orderCompletion, enableBuy }) {
 
   function handleNewsletter(e) {
     orderCompletion.setNewsletter(e.target.checked)
   }
-  
+
   function handleTermsAndConditions(e) {
     orderCompletion.setTermsAndConditions(e.target.checked)
   }
@@ -48,33 +46,35 @@ function OrderCompletion({ orderCompletion, enableBuy }) {
   return (
     <OrderCompletionWrapper>
       <div>
-      <input
-        className="inputs-order-completion"
-        type="checkbox"
-        defaultChecked={orderCompletion.newsletter}
-        name="newsletter"
-        id="newsletter"
-        onChange={handleNewsletter}
-      />
-      <label htmlFor="newsletter">
-        You'll receive receipts and notifications at this email address.
-      </label>
+        <input
+          className="inputs-order-completion"
+          type="checkbox"
+          defaultChecked={orderCompletion.newsletter}
+          name="newsletter"
+          id="newsletter"
+          onChange={handleNewsletter}
+        />
+        <label htmlFor="newsletter">
+          You'll receive receipts and notifications at this email address.
+        </label>
       </div>
       <div>
-      <input
-        className="inputs-order-completion"
-        type="checkbox"
-        defaultChecked={orderCompletion.termsAndConditions}
-        name="termsAndConditions"
-        id="termsAndConditions"
-        onChange={handleTermsAndConditions}
-      />
-      <label htmlFor="termsAndConditions">
-        I accept the Terms and Conditions and the Privacy Policy of Plants
-        Store.
-      </label>
+        <input
+          className="inputs-order-completion"
+          type="checkbox"
+          defaultChecked={orderCompletion.termsAndConditions}
+          name="termsAndConditions"
+          id="termsAndConditions"
+          onChange={handleTermsAndConditions}
+        />
+        <label htmlFor="termsAndConditions">
+          I accept the Terms and Conditions and the Privacy Policy of Plants
+          Store.
+        </label>
       </div>
-      <button className="buy-button" disabled={enableBuy}>Buy</button>
+      <button className="buy-button" disabled={enableBuy}>
+        Buy
+      </button>
     </OrderCompletionWrapper>
   )
 }

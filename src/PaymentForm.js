@@ -67,7 +67,7 @@ function PaymentForm({ payment }) {
             type="text"
             placeholder="Account Holder"
             value={payment.data.accountHolder}
-            onChange={(e) => payment.setAccountholder(e.target.value)}
+            onChange={(e) => payment.setAccountHolder(e.target.value)}
           />
           <input
             className="inputs-payment"
@@ -83,7 +83,7 @@ function PaymentForm({ payment }) {
             type="text"
             placeholder="BIC"
             value={payment.data.bic}
-            onChange={(e) => payment.setIBic(e.target.value)}
+            onChange={(e) => payment.setBic(e.target.value)}
           />
         </fieldset>
       </div>

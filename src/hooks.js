@@ -116,10 +116,10 @@ export function usePayment(initialData) {
           bic,
         })
       },
-      setCardHolder(cardholder) {
+      setCardHolder(cardHolder) {
         setData({
           ...data,
-          cardholder,
+          cardHolder,
         })
       },
       setCardNumber(cardNumber) {
@@ -132,6 +132,12 @@ export function usePayment(initialData) {
         setData({
           ...data,
           cardDate,
+        })
+      },
+      setCardCvc(cardCvc) {
+        setData({
+          ...data,
+          cardCvc,
         })
       },
     }
@@ -151,12 +157,16 @@ export function useCheckout(initialData) {
     deliveryAddress,
     billingAddress,
     payment,
-    email, setEmail,
-    phoneNumber, setPhoneNumber,
+    email,
+    setEmail,
+    phoneNumber,
+    setPhoneNumber,
     enableBuy,
     orderCompletion: {
-      newsletter, setNewsletter,
-      termsAndConditions, setTermsAndConditions
-    }
+      newsletter,
+      setNewsletter,
+      termsAndConditions,
+      setTermsAndConditions,
+    },
   }
 }
