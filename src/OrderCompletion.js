@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 //#region styles
 const OrderCompletionWrapper = styled.div`
-  margin: 10px;
 
   label {
     margin: 10px;
@@ -49,7 +48,7 @@ function OrderCompletion({ orderCompletion, enableBuy }) {
         <input
           className="inputs-order-completion"
           type="checkbox"
-          defaultChecked={orderCompletion.newsletter}
+          checked={orderCompletion.newsletter}
           name="newsletter"
           id="newsletter"
           onChange={handleNewsletter}
@@ -60,9 +59,10 @@ function OrderCompletion({ orderCompletion, enableBuy }) {
       </div>
       <div>
         <input
+          required
           className="inputs-order-completion"
           type="checkbox"
-          defaultChecked={orderCompletion.termsAndConditions}
+          checked={orderCompletion.termsAndConditions}
           name="termsAndConditions"
           id="termsAndConditions"
           onChange={handleTermsAndConditions}
@@ -72,7 +72,7 @@ function OrderCompletion({ orderCompletion, enableBuy }) {
           Store.
         </label>
       </div>
-      <button className="buy-button" disabled={enableBuy}>
+      <button className="buy-button" disabled={!enableBuy}>
         Buy
       </button>
     </OrderCompletionWrapper>

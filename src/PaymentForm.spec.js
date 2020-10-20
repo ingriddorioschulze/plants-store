@@ -14,5 +14,4 @@ test('clicking in one payment method disable the input from the others', async (
   expect(getByPlaceholderText('Card Number').closest('fieldset')).toHaveAttribute('disabled')
   expect(getByPlaceholderText('Card Date').closest('fieldset')).toHaveAttribute('disabled')
   expect(getByPlaceholderText('CVC').closest('fieldset')).toHaveAttribute('disabled')
-
 })
