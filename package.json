@@ -9,6 +9,7 @@
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-test-renderer": "^17.0.0",
     "styled-components": "^5.2.0"
   },
   "scripts": {
@@ -33,6 +34,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^9.5.0"
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/react-hooks": "^3.4.2"
   }
 }
