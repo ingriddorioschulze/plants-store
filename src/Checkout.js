@@ -251,8 +251,8 @@ function Checkout() {
           Store!
         </div>
         <div className="confirmation-text">
-          We have send you more informations in your email
-          <strong>{`${orderConfirmation.customerMail}`}</strong>
+          We have send you more informations in your email: 
+          <strong> {`${orderConfirmation.customerMail}`}</strong>
         </div>
         <div className="confirmation-text">
           Soon you will receive your plants in the following address:
