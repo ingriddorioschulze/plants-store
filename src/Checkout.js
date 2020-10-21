@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useCheckout } from './hooks'
 import { data, executeOrder } from './api'
-import AddressForm from './AddressForm'
-import PaymentForm from './PaymentForm'
-// import OrderCompletion from '../OrderCompletion'
+import AddressForm from './Address'
+import PaymentForm from './Payment'
 
 //#region styles
 const CheckoutWrapper = styled.div`
@@ -68,7 +67,7 @@ const ProductDetails = styled.div`
     padding: 10px;
   }
 `
-const CheckoutDetails = styled.div`
+const OrderDetails = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +123,7 @@ const OrderCompletionWrapper = styled.div`
 //#endregion
 
 /**
- * This component holds other components that handles the users payment, address and delivery informations.
+ * This component holds other components that handles the users payment, address and delivery informations and triggers the order completion.
  */
 function Checkout() {
   const checkout = useCheckout({})
@@ -191,7 +190,7 @@ function Checkout() {
               </div>
             </ProductDetails>
           ))}
-          <CheckoutDetails>
+          <OrderDetails>
             <div className="payment-details">
               Shipping: {data.deliveryCosts}
             </div>
@@ -201,7 +200,7 @@ function Checkout() {
             </div>
             <div className="payment-details">Vat Sum: {data.vadSum}</div>
             <div className="payment-details">Total: {data.totalSum}</div>
-          </CheckoutDetails>
+          </OrderDetails>
           <OrderCompletionWrapper>
               <div>
                 <input

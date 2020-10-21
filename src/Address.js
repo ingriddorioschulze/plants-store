@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //#region styles
-
-const AddressFormWrapper = styled.div`
+const AddressWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -31,9 +30,10 @@ const AddressFormWrapper = styled.div`
 /**
  * This component handles the users address informations.
  */
-function AddressForm({ address }) {
+function Address({ address }) {
+  
   return (
-    <AddressFormWrapper>
+    <AddressWrapper>
       <fieldset>
         <input
           className="inputs-address-form"
@@ -84,8 +84,8 @@ function AddressForm({ address }) {
           onChange={(e) => address.setCity(e.target.value)}
         />
       </fieldset>
-    </AddressFormWrapper>
+    </AddressWrapper>
   )
 }
 
-export default AddressForm
+export default Address

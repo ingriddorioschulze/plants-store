@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 //#region styles
-const PaymentFormWrapper = styled.div`
+const PaymentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -44,10 +44,10 @@ const PaymentFormWrapper = styled.div`
 /**
  * This component handles the users payment informations.
  */
-function PaymentForm({ payment }) {
+function Payment({ payment }) {
 
   return (
-    <PaymentFormWrapper>
+    <PaymentWrapper>
       <div className="inputs-wrapper">
         <input
           className="inputs-payment"
@@ -152,8 +152,8 @@ function PaymentForm({ payment }) {
           />
         </fieldset>
       </div>
-    </PaymentFormWrapper>
+    </PaymentWrapper>
   )
 }
 
-export default PaymentForm
+export default Payment
