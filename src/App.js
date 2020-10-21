@@ -1,8 +1,8 @@
 import React from 'react';
 import {   BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import Shop from './pages/Shop';
-import Checkout from './pages/Checkout';
+import Shop from './Shop';
+import Checkout from './Checkout';
 
 //#region styles
 const AppWrapper = styled.div`

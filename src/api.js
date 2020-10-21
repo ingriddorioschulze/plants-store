@@ -1,6 +1,6 @@
 
 /**
- * This file contains a backend mock used to simulate the requests and responses.
+ * This object contains a backend mock used to simulate the requests and responses.
  */
 export const data = {
     type: "shoppingcart",
