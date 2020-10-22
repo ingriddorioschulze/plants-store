@@ -9,98 +9,106 @@ import PaymentForm from './Payment'
 const CheckoutWrapper = styled.div`
   display: flex;
   padding: 30px;
+
+  @media all and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 const ShippingAndPaymentWrapper = styled.div`
   flex: 3;
 
   fieldset {
-    border: none;
     margin: 0;
     padding: 0;
+    border: none;
   }
 
   .title {
-    font-family: 'Nixie One', cursive;
+    margin: 10px;
     font-size: 16px;
     font-weight: bolder;
-    margin: 10px;
+    font-family: 'Nixie One', cursive;
   }
 
   .inputs-checkout {
-    width: 30%;
-    height: 20px;
-    border: 1px black solid;
+    width: 40%;
     margin: 10px;
     padding: 10px;
+    border: 1px black solid;
     ::placeholder {
-      font-family: 'Nixie One', cursive;
       font-size: 12px;
+      font-family: 'Nixie One', cursive;
+    }
+  }
+
+  form {
+    @media all and (max-width: 600px) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
   }
 `
 const OrderSummary = styled.div`
   flex: 1;
+  height: 100%;
   display: flex;
+  padding: 10px;
+  align-items: center;
   flex-direction: column;
   border: 1px solid black;
-  font-family: 'Nixie One', cursive;
-  font-size: 16px;
-  font-weight: bolder;
-  height: 650px;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
+  font-family: 'Nixie One', cursive;
 `
 const ProductDetails = styled.div`
-  display: flex;
   margin: 10px;
+  display: flex;
 
   img {
-    object-fit: cover;
-    object-position: center;
     width: 20%;
     padding: 10px;
+    object-fit: cover;
+    object-position: center;
   }
   .content-wrapper {
     display: flex;
-    flex-direction: column;
     padding: 10px;
+    flex-direction: column;
   }
 `
 const OrderDetails = styled.div`
   display: flex;
+  text-align: center;
   flex-direction: column;
-  align-items: center;
 
-  .payment-details {
-    margin: 5px;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    line-height: 25px;
   }
 `
 const ConfirmationWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
-
-  .confirmation-text {
-    font-family: 'Nixie One', cursive;
-    font-size: 16px;
-    text-align: center;
-    margin: 10px;
-  }
+  justify-content: center;
+  font-family: 'Nixie One', cursive;
 `
 const OrderCompletionWrapper = styled.div`
+  padding: 20px;
   display: flex;
+  text-align: center;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
 
   label {
     margin: 10px;
-    font-family: 'Nixie One', cursive;
     font-size: 14px;
+    font-family: 'Nixie One', cursive;
   }
 
   .inputs-order-completion {
@@ -108,7 +116,7 @@ const OrderCompletionWrapper = styled.div`
   }
 
   .buy-button {
-    width: 25%;
+    color: black;
     margin: 25px;
     padding: 15px;
     font-size: 16px;
@@ -117,7 +125,6 @@ const OrderCompletionWrapper = styled.div`
     border: solid 1px black;
     background-color: white;
     font-family: 'Nixie One', cursive;
-    color: black;
   }
 `
 //#endregion
@@ -144,38 +151,37 @@ function Checkout() {
     setState('showConfirmation')
   }
 
-
   if (state === 'showForm') {
     return (
       <CheckoutWrapper>
         <ShippingAndPaymentWrapper>
           <form id="checkout-form" onSubmit={handleBuyClick}>
-            <div className="title">YOUR EMAIL AND PHONE NUMBER</div>
+            <p>YOUR EMAIL AND PHONE NUMBER</p>
             <input
               required
               className="inputs-checkout"
-              type="text"
+              type="email"
               placeholder="Email"
               value={checkout.email}
               onChange={(e) => checkout.setEmail(e.target.value)}
             />
             <input
               className="inputs-checkout"
-              type="text"
+              type="tel"
               placeholder="Phone Number"
               value={checkout.phoneNumber}
               onChange={(e) => checkout.setPhoneNumber(e.target.value)}
             />
-            <div className="title">SHIPPING ADDRESS</div>
+            <p>SHIPPING ADDRESS</p>
             <AddressForm address={checkout.deliveryAddress} />
-            <div className="title">BILLING ADDRESS</div>
+            <p>BILLING ADDRESS</p>
             <AddressForm address={checkout.billingAddress} />
-            <div className="title">PAYMENT</div>
+            <p>PAYMENT</p>
             <PaymentForm payment={checkout.payment} />
           </form>
         </ShippingAndPaymentWrapper>
         <OrderSummary>
-          <div className="title">ORDER SUMMARY</div>
+          <p>ORDER SUMMARY</p>
           {data.products.map((product) => (
             <ProductDetails key={product.productid}>
               <img
@@ -191,49 +197,51 @@ function Checkout() {
             </ProductDetails>
           ))}
           <OrderDetails>
-            <div className="payment-details">
-              Shipping: {data.deliveryCosts}
-            </div>
-            <div className="payment-details">Subtotal: {data.sum}</div>
-            <div className="payment-details">
-              Vat Percent: {data.vadPercent}
-            </div>
-            <div className="payment-details">Vat Sum: {data.vadSum}</div>
-            <div className="payment-details">Total: {data.totalSum}</div>
+            <ul>
+              <li>Shipping: {data.deliveryCosts}</li>
+              <li>Subtotal: {data.sum}</li>
+              <li>Vat Percent: {data.vadPercent}</li>
+              <li>Vat Sum: {data.vadSum}</li>
+              <li>Total: {data.totalSum}</li>
+            </ul>
           </OrderDetails>
           <OrderCompletionWrapper>
-              <div>
-                <input
-                  className="inputs-order-completion"
-                  type="checkbox"
-                  checked={checkout.orderCompletion.newsletter}
-                  name="newsletter"
-                  id="newsletter"
-                  onChange={handleNewsletter}
-                />
-                <label htmlFor="newsletter">
-                  You'll receive receipts and notifications at this email
-                  address.
-                </label>
-              </div>
-              <div>
-                <input
-                  required
-                  className="inputs-order-completion"
-                  type="checkbox"
-                  checked={checkout.orderCompletion.termsAndConditions}
-                  name="termsAndConditions"
-                  id="termsAndConditions"
-                  onChange={handleTermsAndConditions}
-                />
-                <label htmlFor="termsAndConditions">
-                  I accept the Terms and Conditions and the Privacy Policy of
-                  Plants Store.
-                </label>
-              </div>
-              <button className="buy-button" form="checkout-form" disabled={!checkout.enableBuy}>
-                Buy
-              </button>
+            <div>
+              <input
+                className="inputs-order-completion"
+                type="checkbox"
+                checked={checkout.orderCompletion.newsletter}
+                name="newsletter"
+                id="newsletter"
+                onChange={handleNewsletter}
+              />
+              <label htmlFor="newsletter">
+                You'll receive receipts and notifications at this email address.
+              </label>
+            </div>
+            <div>
+              <input
+                required
+                className="inputs-order-completion"
+                type="checkbox"
+                checked={checkout.orderCompletion.termsAndConditions}
+                name="termsAndConditions"
+                id="termsAndConditions"
+                onChange={handleTermsAndConditions}
+              />
+              <label htmlFor="termsAndConditions">
+                I accept the Terms and Conditions and the Privacy Policy of
+                Plants Store.
+              </label>
+            </div>
+            <button
+              className="buy-button"
+              type="submit"
+              form="checkout-form"
+              disabled={!checkout.enableBuy}
+            >
+              Buy
+            </button>
           </OrderCompletionWrapper>
         </OrderSummary>
       </CheckoutWrapper>
@@ -241,23 +249,23 @@ function Checkout() {
   } else if (state === 'showConfirmation') {
     return (
       <ConfirmationWrapper>
-        <div className="confirmation-text">
+        <h3>
           Thanks <strong>{`${orderConfirmation.customerName}`}</strong> for your
           order number <strong>{`${orderConfirmation.orderNumber}`}</strong> and
           id <strong>{`${orderConfirmation.orderID}`}</strong>
-        </div>
-        <div className="confirmation-text">
+        </h3>
+        <h5>
           We are happy you have found a special and beautiful plant at Plants
           Store!
-        </div>
-        <div className="confirmation-text">
+        </h5>
+        <h5>
           We have send you more informations in your email: 
           <strong> {`${orderConfirmation.customerMail}`}</strong>
-        </div>
-        <div className="confirmation-text">
+        </h5>
+        <h5>
           Soon you will receive your plants in the following address:
           <strong> {`${orderConfirmation.deliveryAddress}`}</strong>
-        </div>
+        </h5>
       </ConfirmationWrapper>
     )
   }

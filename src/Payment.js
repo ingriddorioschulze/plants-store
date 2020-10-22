@@ -6,37 +6,54 @@ const PaymentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  .inputs-wrapper {
-    margin: 5px 5px 10px 0;
-  }
-
   .inputs-payment {
-    border: 1px black solid;
+    width: 40%;
     margin: 10px;
     padding: 10px;
     background: none;
+    border: 1px black solid;
     ::placeholder {
-      font-family: 'Nixie One', cursive;
-      font-size: 12px;
       color: black;
+      font-size: 12px;
+      font-family: 'Nixie One', cursive;
     }
   }
 
-  label {
-    font-family: 'Nixie One', cursive;
-    font-size: 14px;
+  .input-radio {
+    margin: 10px;
   }
+
+  label {
+    font-size: 14px;
+    font-family: 'Nixie One', cursive;
+  }
+
   fieldset {
-    border: none;
     margin: 0;
     padding: 0;
+    width: 100%;
+    border: none;
+
+    @media all and (max-width: 600px) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
   }
 
   .bank-transfer-text {
-    font-family: 'Nixie One', cursive;
+    width: 65%;
     font-size: 14px;
     margin-left: 10px;
-    width: 65%;
+    font-family: 'Nixie One', cursive;
+  }
+
+  @media all and (max-width: 800px) {
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
 `
 //#endregion
@@ -48,48 +65,47 @@ function Payment({ payment }) {
 
   return (
     <PaymentWrapper>
-      <div className="inputs-wrapper">
+      <label>
         <input
-          className="inputs-payment"
+          className="input-radio"
           required
           type="radio"
-          id="bank-account"
           name="payment type"
           value="bank-account"
           onChange={(e) => payment.setPaymentType(e.target.value)}
           checked={payment.data.paymentType === 'bank-account'}
         />
-        <label htmlFor="bank-account">Bank Account</label>
-        <fieldset disabled={payment.data.paymentType !== 'bank-account'}>
-          <input
-            className="inputs-payment"
-            required
-            type="text"
-            placeholder="Account Holder"
-            value={payment.data.accountHolder}
-            onChange={(e) => payment.setAccountHolder(e.target.value)}
-          />
-          <input
-            className="inputs-payment"
-            required
-            type="text"
-            placeholder="IBAN"
-            value={payment.data.iban}
-            onChange={(e) => payment.setIban(e.target.value)}
-          />
-          <input
-            className="inputs-payment"
-            required
-            type="text"
-            placeholder="BIC"
-            value={payment.data.bic}
-            onChange={(e) => payment.setBic(e.target.value)}
-          />
-        </fieldset>
-      </div>
-      <div className="inputs-wrapper">
+        Bank Account
+      </label>
+      <fieldset disabled={payment.data.paymentType !== 'bank-account'}>
         <input
           className="inputs-payment"
+          required
+          type="text"
+          placeholder="Account Holder"
+          value={payment.data.accountHolder}
+          onChange={(e) => payment.setAccountHolder(e.target.value)}
+        />
+        <input
+          className="inputs-payment"
+          required
+          type="text"
+          placeholder="IBAN"
+          value={payment.data.iban}
+          onChange={(e) => payment.setIban(e.target.value)}
+        />
+        <input
+          className="inputs-payment"
+          required
+          type="text"
+          placeholder="BIC"
+          value={payment.data.bic}
+          onChange={(e) => payment.setBic(e.target.value)}
+        />
+      </fieldset>
+        <label htmlFor="bank-transfer">
+        <input
+          className="input-radio"
           required
           type="radio"
           id="bank-transfer"
@@ -98,16 +114,15 @@ function Payment({ payment }) {
           onChange={(e) => payment.setPaymentType(e.target.value)}
           checked={payment.data.paymentType === 'bank-transfer'}
         />
-        <label htmlFor="bank-transfer">Bank Transfer</label>
+        Bank Transfer</label>
         <div className="bank-transfer-text">
           Transfer the invoice amount within 7 days after receipt of the
           products. You will find the bank account details on the invoice which
           is enclosed with the package.
         </div>
-      </div>
-      <div className="inputs-wrapper">
+        <label htmlFor="credit-card">
         <input
-          className="inputs-payment"
+          className="input-radio"
           required
           type="radio"
           id="credit-card"
@@ -116,7 +131,7 @@ function Payment({ payment }) {
           onChange={(e) => payment.setPaymentType(e.target.value)}
           checked={payment.data.paymentType === 'credit-card'}
         />
-        <label htmlFor="credit-card">Credit Card</label>
+        Credit Card</label>
         <fieldset disabled={payment.data.paymentType !== 'credit-card'}>
           <input
             className="inputs-payment"
@@ -151,7 +166,6 @@ function Payment({ payment }) {
             onChange={(e) => payment.setCardCvc(e.target.value)}
           />
         </fieldset>
-      </div>
     </PaymentWrapper>
   )
 }

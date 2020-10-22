@@ -4,9 +4,9 @@ import styled from 'styled-components'
 //#region styles
 const ShopWrapper = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
   .checkout-button {
   margin: 15px;
@@ -26,13 +26,14 @@ const ShopWrapper = styled.div`
  */
 function Shop({ history }) {
 
-  function handleCheckoutClick() {
+  function handleCheckoutClick(e) {
+    e.preventDefault()
     history.push('/checkout')
   }
 
   return (
     <ShopWrapper>
-      <button className="checkout-button" onClick={handleCheckoutClick}>Checkout</button>
+      <button className="checkout-button" type="submit" onClick={handleCheckoutClick}>Checkout</button>
     </ShopWrapper>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {   BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import Shop from './Shop';
 import Checkout from './Checkout';
@@ -10,13 +10,7 @@ const AppWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-.page-title {
-  font-size: 60px;
-  font-weight: bold;
   font-family: 'Nixie One', cursive;
-  padding: 20px;
-}
 `
 //#endregion
 
@@ -24,7 +18,7 @@ function App() {
 
   return (
     <AppWrapper>
-       <div className="page-title">Plants Store</div>
+       <h1>Plants Store</h1>
        <Router>
        <Switch>
          <Route exact path="/" component={Shop}/>

@@ -2,27 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 
 //#region styles
-const AddressWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
-  }
+const AddressFieldset = styled.fieldset`
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 
   .inputs-address-form {
-    width: 30%;
-    height: 20px;
+    width: 40%;
     border: 1px black solid;
     margin: 10px;
     padding: 10px;
-
     ::placeholder {
       font-family: 'Nixie One', cursive;
-      font-size: 12px; 
+      font-size: 12px;
     }
+  }
+  @media all and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `
 //#endregion
@@ -33,8 +32,7 @@ const AddressWrapper = styled.div`
 function Address({ address }) {
   
   return (
-    <AddressWrapper>
-      <fieldset>
+    <AddressFieldset>
         <input
           className="inputs-address-form"
           required
@@ -83,8 +81,7 @@ function Address({ address }) {
           value={address.data.city}
           onChange={(e) => address.setCity(e.target.value)}
         />
-      </fieldset>
-    </AddressWrapper>
+    </AddressFieldset>
   )
 }
 
