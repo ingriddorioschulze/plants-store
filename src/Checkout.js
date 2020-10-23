@@ -96,6 +96,7 @@ const ConfirmationWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   font-family: 'Nixie One', cursive;
+  padding: 30px;
 `
 const OrderCompletionWrapper = styled.div`
   padding: 20px;
