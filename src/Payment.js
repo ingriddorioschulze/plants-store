@@ -17,6 +17,9 @@ const PaymentWrapper = styled.div`
       font-size: 12px;
       font-family: 'Nixie One', cursive;
     }
+    @media all and (max-width: 600px) {
+      width: 95%;
+    }
   }
 
   .input-radio {
@@ -43,12 +46,21 @@ const PaymentWrapper = styled.div`
 
   .bank-transfer-text {
     width: 65%;
+    display: flex;
     font-size: 14px;
     margin-left: 10px;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
     font-family: 'Nixie One', cursive;
+
+    @media all and (max-width: 600px) {
+      width: 100%;
+      margin: 0;
+    }
   }
 
-  @media all and (max-width: 800px) {
+  @media all and (max-width: 1140px) {
     display: flex;
     margin-bottom: 40px;
     align-items: center;
@@ -82,7 +94,7 @@ function Payment({ payment }) {
           className="inputs-payment"
           required
           type="text"
-          placeholder="Account Holder"
+          placeholder="* Account Holder"
           value={payment.data.accountHolder}
           onChange={(e) => payment.setAccountHolder(e.target.value)}
         />
@@ -90,7 +102,7 @@ function Payment({ payment }) {
           className="inputs-payment"
           required
           type="text"
-          placeholder="IBAN"
+          placeholder="* IBAN"
           value={payment.data.iban}
           onChange={(e) => payment.setIban(e.target.value)}
         />
@@ -98,7 +110,7 @@ function Payment({ payment }) {
           className="inputs-payment"
           required
           type="text"
-          placeholder="BIC"
+          placeholder="* BIC"
           value={payment.data.bic}
           onChange={(e) => payment.setBic(e.target.value)}
         />
@@ -137,7 +149,7 @@ function Payment({ payment }) {
             className="inputs-payment"
             required
             type="text"
-            placeholder="Card Holder"
+            placeholder="* Card Holder"
             value={payment.data.cardHolder}
             onChange={(e) => payment.setCardHolder(e.target.value)}
           />
@@ -145,7 +157,7 @@ function Payment({ payment }) {
             className="inputs-payment"
             required
             type="text"
-            placeholder="Card Number"
+            placeholder="* Card Number"
             value={payment.data.cardNumber}
             onChange={(e) => payment.setCardNumber(e.target.value)}
           />
@@ -153,7 +165,7 @@ function Payment({ payment }) {
             className="inputs-payment"
             required
             type="text"
-            placeholder="Card Date"
+            placeholder="* Card Date"
             value={payment.data.cardDate}
             onChange={(e) => payment.setCardDate(e.target.value)}
           />
@@ -161,7 +173,7 @@ function Payment({ payment }) {
             className="inputs-payment"
             required
             type="text"
-            placeholder="CVC"
+            placeholder="* CVC"
             value={payment.data.cardCvc}
             onChange={(e) => payment.setCardCvc(e.target.value)}
           />

@@ -17,6 +17,9 @@ const AddressFieldset = styled.fieldset`
       font-family: 'Nixie One', cursive;
       font-size: 12px;
     }
+    @media all and (max-width: 600px) {
+      width: 95%;
+    }
   }
   @media all and (max-width: 600px) {
     display: flex;
@@ -37,7 +40,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="First Name"
+          placeholder="* First Name"
           value={address.data.firstName}
           onChange={(e) => address.setFirstName(e.target.value)}
         />
@@ -45,7 +48,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="Last Name"
+          placeholder="* Last Name"
           value={address.data.lastName}
           onChange={(e) => address.setLastName(e.target.value)}
         />
@@ -53,7 +56,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="Street and House Number"
+          placeholder="* Street and House Number"
           value={address.data.streetAndNumber}
           onChange={(e) => address.setStreetAndNumber(e.target.value)}
         />
@@ -61,7 +64,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="Country"
+          placeholder="* Country"
           value={address.data.country}
           onChange={(e) => address.setCountry(e.target.value)}
         />
@@ -69,7 +72,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="Postal Code"
+          placeholder="* Postal Code"
           value={address.data.postalCode}
           onChange={(e) => address.setPostalCode(e.target.value)}
         />
@@ -77,7 +80,7 @@ function Address({ address }) {
           className="inputs-address-form"
           required
           type="text"
-          placeholder="City"
+          placeholder="* City"
           value={address.data.city}
           onChange={(e) => address.setCity(e.target.value)}
         />

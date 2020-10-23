@@ -10,7 +10,12 @@ const AppWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   font-family: 'Nixie One', cursive;
+
+  h1 {
+    font-size: 50px;
+  }
 `
 //#endregion
 

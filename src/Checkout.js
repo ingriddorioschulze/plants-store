@@ -9,12 +9,14 @@ import PaymentForm from './Payment'
 const CheckoutWrapper = styled.div`
   display: flex;
   padding: 30px;
-
-  @media all and (max-width: 800px) {
+  
+  @media all and (max-width: 1140px) {
     display: flex;
     flex-direction: column;
+    text-align: center;
+
   }
-`
+  `
 const ShippingAndPaymentWrapper = styled.div`
   flex: 3;
 
@@ -40,10 +42,26 @@ const ShippingAndPaymentWrapper = styled.div`
       font-size: 12px;
       font-family: 'Nixie One', cursive;
     }
+    @media all and (max-width: 600px) {
+      width: 95%;
+    }
+  }
+
+  h2 {
+    font-size: 14px;
+    font-family: 'Nixie One', cursive;
+    margin-left: 10px;
+
+    @media all and (max-width: 900px) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 10px 0px 10px 0px;
+    }
   }
 
   form {
-    @media all and (max-width: 600px) {
+    @media all and (max-width: 900px) {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -56,6 +74,7 @@ const OrderSummary = styled.div`
   display: flex;
   padding: 10px;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   border: 1px solid black;
   justify-content: center;
@@ -74,6 +93,7 @@ const ProductDetails = styled.div`
   .content-wrapper {
     display: flex;
     padding: 10px;
+    text-align: start;
     flex-direction: column;
   }
 `
@@ -107,9 +127,9 @@ const OrderCompletionWrapper = styled.div`
   justify-content: center;
 
   label {
-    margin: 10px;
     font-size: 14px;
     font-family: 'Nixie One', cursive;
+    text-align: center;
   }
 
   .inputs-order-completion {
@@ -157,12 +177,12 @@ function Checkout() {
       <CheckoutWrapper>
         <ShippingAndPaymentWrapper>
           <form id="checkout-form" onSubmit={handleBuyClick}>
-            <p>YOUR EMAIL AND PHONE NUMBER</p>
+            <h2>YOUR EMAIL AND PHONE NUMBER</h2>
             <input
               required
               className="inputs-checkout"
               type="email"
-              placeholder="Email"
+              placeholder="* Email"
               value={checkout.email}
               onChange={(e) => checkout.setEmail(e.target.value)}
             />
@@ -173,16 +193,18 @@ function Checkout() {
               value={checkout.phoneNumber}
               onChange={(e) => checkout.setPhoneNumber(e.target.value)}
             />
-            <p>SHIPPING ADDRESS</p>
+            <h2>SHIPPING ADDRESS</h2>
             <AddressForm address={checkout.deliveryAddress} />
-            <p>BILLING ADDRESS</p>
+            <h2>BILLING ADDRESS</h2>
             <AddressForm address={checkout.billingAddress} />
-            <p>PAYMENT</p>
+            <h2>PAYMENT</h2>
             <PaymentForm payment={checkout.payment} />
           </form>
         </ShippingAndPaymentWrapper>
         <OrderSummary>
-          <p>ORDER SUMMARY</p>
+          <h2>
+            <strong>ORDER SUMMARY</strong>
+          </h2>
           {data.products.map((product) => (
             <ProductDetails key={product.productid}>
               <img
@@ -199,11 +221,13 @@ function Checkout() {
           ))}
           <OrderDetails>
             <ul>
-              <li>Shipping: {data.deliveryCosts}</li>
               <li>Subtotal: {data.sum}</li>
-              <li>Vat Percent: {data.vadPercent}</li>
               <li>Vat Sum: {data.vadSum}</li>
-              <li>Total: {data.totalSum}</li>
+              <li>Vat Percent: {data.vadPercent}</li>
+              <li>Shipping: {data.deliveryCosts}</li>
+              <li>
+                <strong>TOTAL: {data.totalSum}</strong>
+              </li>
             </ul>
           </OrderDetails>
           <OrderCompletionWrapper>
@@ -231,7 +255,7 @@ function Checkout() {
                 onChange={handleTermsAndConditions}
               />
               <label htmlFor="termsAndConditions">
-                I accept the Terms and Conditions and the Privacy Policy of
+                * I accept the Terms and Conditions and the Privacy Policy of
                 Plants Store.
               </label>
             </div>

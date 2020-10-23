@@ -7,11 +7,11 @@ import Payment from './Payment'
 
 
 test('clicking in one payment method disable the input from the others', async () => {
-  const payment  = renderHook(() => usePayment({}))
-  const { getByLabelText, getByPlaceholderText } = render(<Payment payment={payment.result.current}/>)
+  const { result }  = renderHook(() => usePayment({}))
+  const { getByLabelText, getByPlaceholderText } = render(<Payment payment={result.current}/>)
   fireEvent.click(getByLabelText('Bank Account'))
-  expect(getByPlaceholderText('Card Holder').closest("fieldset")).toHaveAttribute('disabled')
-  expect(getByPlaceholderText('Card Number').closest('fieldset')).toHaveAttribute('disabled')
-  expect(getByPlaceholderText('Card Date').closest('fieldset')).toHaveAttribute('disabled')
-  expect(getByPlaceholderText('CVC').closest('fieldset')).toHaveAttribute('disabled')
+  expect(getByPlaceholderText('* Card Holder').closest("fieldset")).toHaveAttribute('disabled')
+  expect(getByPlaceholderText('* Card Number').closest('fieldset')).toHaveAttribute('disabled')
+  expect(getByPlaceholderText('* Card Date').closest('fieldset')).toHaveAttribute('disabled')
+  expect(getByPlaceholderText('* CVC').closest('fieldset')).toHaveAttribute('disabled')
 })
